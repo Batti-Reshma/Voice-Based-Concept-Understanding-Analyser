@@ -461,16 +461,15 @@ if uploaded_file:
 
         st.info(transcript)
 
-        # -----------------------------
-        # Semantic Similarity
-        # -----------------------------
+       # -----------------------------
+       # Semantic Similarity
+       # -----------------------------
         similarity = calculate_similarity(
             reference_text,
             transcript
         )
 
         st.markdown("## 📊 Analysis Summary")
-        st.progress(float(similarity))
 
         level = understanding_level(similarity)
 
@@ -479,24 +478,24 @@ if uploaded_file:
         with col1:
             st.metric(
                "📈 Similarity Score",
-               f"{similarity*100:.2f}%"
+               f"{similarity:.2f}%"
             )
 
-            st.progress(similarity)
+            st.progress(similarity / 100)
 
         with col2:
 
             if level.lower() == "excellent":
-               st.success("🟢 Excellent")
+                st.success("🟢 Excellent")
 
             elif level.lower() == "good":
-               st.info("🔵 Good")
+                st.info("🔵 Good")
 
             elif level.lower() == "average":
-               st.warning("🟡 Average")
+                st.warning("🟡 Average")
 
             else:
-               st.error("🔴 Needs Improvement")
+                st.error("🔴 Needs Improvement")
         # -----------------------------
         # Audio Analysis
         # -----------------------------
